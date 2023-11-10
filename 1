@@ -1,0 +1,50 @@
+#include <iostream>
+using namespace std;
+
+class Human {
+public:
+	string name;
+	int age;
+	float weight;
+public:
+	Human() { 
+		name = ""; 
+	}
+	Human(string name) { 
+		this->name = name; 
+	}
+	Human(string name, int age) : Human(name) {
+		this->age = age; 
+	}
+	Human(string name, int age, float weight) : Human(name, age) { 
+		this->weight = weight; //дилигированный конструктор
+	}
+};
+class Point{
+public:
+	Point(const Point& other) { //конструктор копирования
+		cout << "constructor of copy" << this << endl;
+		this->x = other.x;
+		this->y = other.y;
+	}
+public:
+	Point() { cout << "constructor " << this << endl; }
+	Point(int x, int y) : x(x), y(y) { //короткая запись приравнивания начальной переменной класс x или y к введенным значениям
+		cout << "2 arguements " << this << endl;
+	}
+	~Point() { cout << "destructor " << this << endl; }//деструктор
+private:
+	int x, y;
+public:
+	void setCoord(int x, int y) { this->x = x; this->y = y; }
+};
+Point foo(Point pt) {
+	cout << "calling function foo" << endl;
+	return pt;
+}
+int main() {
+	Point a;
+	foo(a); 
+	Point b(a);
+	return 0;
+}
