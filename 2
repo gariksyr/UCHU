@@ -1,0 +1,71 @@
+/*#include <iostream>
+using namespace std;
+
+class Point {
+public:
+	Point() { nCount++; }
+	static int getnCount() { return nCount; }
+private:
+	static int nCount;
+	int x, y;
+};
+int Point::nCount = 0;
+int main()
+{
+	setlocale(LC_ALL, "rus");
+	Point p1, p2;
+	cout << p1.getnCount();
+}*/
+//статические данные
+#include <iostream>
+class Point {
+	int x;
+	int y;
+public:
+	Point(int x, int y) { this->x = x; this->y = y; }
+};
+class Figure {
+	Point* pnt;
+	size_t length{ 0 };
+public:
+	Figure(size_t len);
+	~Figure();
+	double calcSquare();
+	double calcPerim();
+	void setPoint(size_t index, const Point &p);
+};
+class Circle : public Figure {
+	Circle() : Figure(2) {};
+	void setPoint(int x, int y, int x2, int y2);
+	double calcSquare(), overload;
+	double calcPerim();
+	double calcRadius();
+	double calcThreePoint();
+
+	};
+class Rectangle : public Figure {
+
+};
+class Triangle : public Figure {
+
+};
+int main() {
+	Point p[4];
+	p[0] = Point[0, 0];
+	p[1] = Point[0, 1];
+	p[2] = Point[1, -1];	
+	p[3] = Point[1, 0];
+	Triangle Tr1(3);
+	Tr1.setPoint(p[0], p[2], p[3]);
+	Tr1.calcPerim();
+	Tr1.calcSquare();
+	Circle crl(2);
+	crl.setPoint(p[2], p[3]);
+	crl.calcPerim();
+	crl.calcSquare();
+	Rectangle rel(4);
+	rel.setPoints(&p);
+	rel.calcPerim();
+	rel.calcSquare();
+	return 0;
+}
