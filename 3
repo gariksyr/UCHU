@@ -1,0 +1,59 @@
+#include <iostream> //НАСЛЕДОВАНИЕ!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+using namespace std;
+
+class Point {
+public:
+	int x, y;
+	Point() { x = 0; y = 0; }
+	Point(int X, int Y) : x(X), y(Y){}
+};
+class Styles {
+protected:
+	short width;
+	int colour;
+};
+class Properties : public Styles {
+public:
+	Properties() { sp.x = sp.y = ep.x = ep.y = 0; width = 1; colour = 0; cout << "конструктор properties" << endl; }
+	Properties(int x1, int y1, int x2, int y2) {
+		sp.x = x1;
+		sp.y = y1;
+		ep.x = x2;
+		ep.x = y2;
+		width = 1;
+		colour = 0;
+		cout << "конструктор properties" << endl;
+	}
+	~Properties() { cout << "деструктор properties" << endl; }
+	void setStartPoint(int x, int y) { sp.x = x; sp.y = y; }
+	void setEndPoint(int x, int y) { ep.x = x; ep.y = y; }
+protected:
+	Point sp, ep;
+};
+
+class Line : public Properties{
+public:
+	Line() { cout << "конструктор Line" << endl; }
+	Line(int x1, int y1, int x2, int y2) : Properties(x1, y1, x2, y2){
+		cout << "конструктор Line" << endl;
+	}
+	~Line() { cout << "деструктор line" << endl; }
+	void draw() { cout << "Рисуем линию " << sp.x << " " << sp.y << " " << ep.x << " " << ep.y << endl; }
+};
+class Rect : public Properties{
+public:
+	Rect() { cout << "конструктор rect" << endl; }
+	Rect(int x1, int y1, int x2, int y2) : Properties(x1, y1, x2, y2) {
+		cout << "конструктор rect" << endl;
+	}
+	~Rect() { cout << "деструктор rect" << endl; }
+	void draw() { cout << "Рисуем прямоугольник " << sp.x << " " << sp.y << " " << ep.x << " " << ep.y << endl;}
+};
+int main() {
+	setlocale(LC_ALL, "Rus");
+	Line line;
+	line.setStartPoint(1, 2);
+	line.setEndPoint(5, 8);
+	line.draw();
+	return 0;
+}
