@@ -1,0 +1,15 @@
+#include <iostream>
+using namespace std;
+int div_ab(int a, int b) {
+    if (b == 0) throw 0;
+    return a / b;
+ }
+int main()
+{
+    try {
+        div_ab(5, 0);
+    }
+    catch (const int& e) {
+        cout << e << endl;
+    }
+}
